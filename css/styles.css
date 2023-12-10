@@ -1,0 +1,193 @@
+/* Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    font: inherit;
+    background-color: transparent;
+    border: none;
+}
+
+button:is(:hover, :focus-within) {
+    outline-color: transparent;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: middle;
+    height: auto;
+    shape-margin: 1em;
+    font-style: italic;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/* Custom properties */
+:root {
+    --clr-primary: 0 0% 89%;
+    --clr-secodary: 0 0% 0%;
+    --clr-accent: 120 100% 20%;
+
+    /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
+    --step--1: clamp(0.9375rem, 0.9158rem + 0.1087vw, 1rem);
+    --step-0: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+    --step-1: clamp(1.35rem, 1.2761rem + 0.3696vw, 1.5625rem);
+    --step-2: clamp(1.62rem, 1.5041rem + 0.5793vw, 1.9531rem);
+    --step-3: clamp(1.9438rem, 1.7707rem + 0.8652vw, 2.4413rem);
+    --step-4: clamp(2.3325rem, 2.0823rem + 1.2511vw, 3.0519rem);
+    --step-5: clamp(2.7994rem, 2.4461rem + 1.7663vw, 3.815rem);
+
+    --fs-900: var(--step-5);
+    --fs-800: var(--step-4);
+    --fs-700: var(--step-3);
+    --fs-600: var(--step-2);
+    --fs-500: var(--step-1);
+    --fs-400: var(--step-0);
+    --fs-300: var(--step--1);
+    --fs-200: var(--step--2);
+
+    --ff-heading: serif;
+    --ff-body: sans-serif;
+}
+
+/* Utility classes */
+/* Typography */
+.bg-primary {
+    background-color: hsl(var(--clr-primary));
+}
+
+.bg-secondary {
+    background-color: hsl(var(--clr-secondary));
+}
+
+.text-secondary {
+    color: hsl(var(--clr-secondary));
+}
+
+.text-primary {
+    color: hsl(var(--clr-primary));
+}
+
+.bg-accent {
+    background-color: hsl(var(--clr-accent));
+}
+
+.fs-900 {
+    font-size: var(--fs-900);
+}
+
+.fs-800 {
+    font-size: var(--fs-800);
+}
+
+.fs-700 {
+    font-size: var(--fs-700);
+}
+
+.fs-600 {
+    font-size: var(--fs-600);
+}
+
+.fs-500 {
+    font-size: var(--fs-500);
+}
+
+.fs-400 {
+    font-size: var(--fs-400);
+}
+
+.fs-300 {
+    font-size: var(--fs-300);
+}
+
+.fs-200 {
+    font-size: var(--fs-200);
+}
+
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600,
+.fs-500 {
+    line-height: 1.1;
+}
+
+.fs-400,
+.fs-300,
+.fs-200 {
+    line-height: 1.6;
+}
+
+.ff-heading {
+    font-family: var(--ff-heading);
+}
+
+.ff-body {
+    font-family: var(--ff-body);
+}
+
+/* Layout */
+.wrapper {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding-inline: var(--step-0);
+}
+
+.flow > * + * {
+    margin-top: var(--flow-space, 1em);
+}
+
+.grid {
+    display: grid;
+    gap: var(--step-0);
+}
+
+/* Components */
+/* Hero */
+.hero {
+    grid-template-columns: repeat(2, 1fr);
+    height: 100vh;
+    position: relative;
+}
+
+.hero div {
+    align-self: center;
+}
+
+.hero__cta {
+    padding: var(--step--1) var(--step-2);
+    border-radius: calc(var(--step-0) * 0.3);
+    transition: background-color 350ms ease-in-out;
+}
+
+.hero__cta:is(:hover, :focus-within) {
+    background-color: hsl(var(--clr-accent) / 0.9);
+}
+
+.hero__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (width < 35em) {
+    .hero div{
+        grid-column: 1 / -1;
+    }
+
+    .hero__image{
+        position: absolute;
+        z-index: -1;
+        max-width: initial;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+    }
+}
